@@ -1,4 +1,4 @@
-from flask.ext.login import LoginManager, UserMixin, login_user
+from flask_login import LoginManager, UserMixin, login_user
 from mhvdb2.models import User as UserModel
 from werkzeug.security import generate_password_hash, check_password_hash
 

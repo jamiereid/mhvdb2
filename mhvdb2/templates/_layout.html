@@ -51,7 +51,7 @@
                             {% endfor %}
                         </ul>
                         <p class="navbar-text navbar-right">
-                        {% if current_user.is_authenticated() %}
+                        {% if current_user.is_authenticated %}
                         Signed in as {{current_user.name}} – <a href="{{ url_for('admin.logout') }}">Log out</a>
                         {% endif %}
                         </p>

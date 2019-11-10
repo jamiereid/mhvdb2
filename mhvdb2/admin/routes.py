@@ -1,7 +1,7 @@
 from mhvdb2.models import Entity, User
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect, url_for, current_app
 from .authentication import authenticate_user, register_user
-from flask.ext.login import login_required, current_user, logout_user, current_app
+from flask_login import login_required, current_user, logout_user
 from datetime import datetime, date
 from . import admin
 from mhvdb2 import resources, app, mailer
@@ -46,7 +46,7 @@ def login_post():
 @admin.route("/register", methods=["GET"])
 def register():
     # Only allow access if logged in or no users are registered
-    if current_user.is_anonymous() and User.select().count() > 0:
+    if current_user.is_anonymous and User.select().count() > 0:
         return current_app.login_manager.unauthorized()
 
     return render_template("admin/register.html")
@@ -55,7 +55,7 @@ def register():
 @admin.route("/register", methods=["POST"])
 def register_post():
     # Only allow access if logged in or no users are registered
-    if current_user.is_anonymous() and User.select().count() > 0:
+    if current_user.is_anonymous and User.select().count() > 0:
         return current_app.login_manager.unauthorized()
 
     name = get_post_value("name")

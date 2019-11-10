@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 app.config.from_object('settings')
 
-database = SqliteDatabase(app.config['DATABASE'], threadlocals=True)
+database = SqliteDatabase(app.config['DATABASE'])
 
 from mhvdb2.admin import admin  # noqa
 app.register_blueprint(admin, url_prefix='/admin')
